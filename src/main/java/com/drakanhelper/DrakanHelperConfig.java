@@ -44,17 +44,6 @@ public interface DrakanHelperConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 1,
-		keyName = "highlightLungeColumn",
-		name = "Spear-lunge column (off — distracting)",
-		description = "During the spear combo, paint the 2-wide dodge column. Off by default: it can't predict the L/R chain and tends to obscure Drakan's own forecast."
-	)
-	default boolean highlightLungeColumn()
-	{
-		return false;
-	}
-
-	@ConfigItem(
 		position = 2,
 		keyName = "highlightAoe",
 		name = "Radial AoE tiles",
@@ -108,50 +97,6 @@ public interface DrakanHelperConfig extends Config
 	default int beatDelayMs()
 	{
 		return 250;
-	}
-
-	@ConfigItem(
-		position = 6,
-		keyName = "lungeColumnLength",
-		name = "Column length",
-		description = "How many tiles of the dodge column to paint away from Drakan. (Calibration)"
-	)
-	default int lungeColumnLength()
-	{
-		return 6;
-	}
-
-	@ConfigItem(
-		position = 7,
-		keyName = "lungeSwapSides",
-		name = "Swap lunge sides",
-		description = "If the red/green sides of the spear-lunge column are mirrored, tick this to swap them. (Calibration)"
-	)
-	default boolean lungeSwapSides()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		position = 8,
-		keyName = "lungePerpOffset",
-		name = "Column sideways nudge",
-		description = "Shift the whole dodge column sideways by this many tiles if it is off-centre from Drakan. (Calibration)"
-	)
-	default int lungePerpOffset()
-	{
-		return 0;
-	}
-
-	@ConfigItem(
-		position = 9,
-		keyName = "lungeForwardOffset",
-		name = "Column forward nudge",
-		description = "Shift the dodge column towards/away from Drakan by this many tiles. (Calibration)"
-	)
-	default int lungeForwardOffset()
-	{
-		return 0;
 	}
 
 	@Alpha

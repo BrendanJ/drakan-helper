@@ -25,8 +25,6 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 
 public class DrakanHelperOverlay extends Overlay
 {
-	private static final Color NEUTRAL = new Color(235, 235, 90, 45);
-
 	private final Client client;
 	private final DrakanHelperPlugin plugin;
 	private final DrakanHelperConfig config;
@@ -95,16 +93,6 @@ public class DrakanHelperOverlay extends Overlay
 				}
 			}
 		}
-		else if (config.highlightLungeColumn() && plugin.lungeActive())
-		{
-			renderColumn(graphics, boss, true);
-		}
-		else if (config.highlightLungeColumn() && plugin.comboIncoming() > 0)
-		{
-			// Wind-up: side not known yet, show the neutral lane so you can pre-position in it.
-			renderColumn(graphics, boss, false);
-		}
-
 		if (config.safeClickTiles())
 		{
 			renderSafeSequence(graphics, boss);
@@ -272,43 +260,6 @@ public class DrakanHelperOverlay extends Overlay
 				idx++;
 			}
 			x += fm.stringWidth(ch);
-		}
-	}
-
-	/**
-	 * Spear-lunge dodge column: exactly 2 tiles wide, locked to Drakan's 2x2 footprint and
-	 * extending along his facing. When {@code sided}, the struck side (from the strike animation)
-	 * is red and the other green; during the wind-up both tiles are drawn neutral. The player
-	 * stays on the safe tile and back-pedals away from Drakan.
-	 */
-	private void renderColumn(Graphics2D g, NPC boss, boolean sided)
-	{
-		final LocalPoint c = boss.getLocalLocation(); // shared corner of the 2x2
-		if (c == null)
-		{
-			return;
-		}
-		final int[] f = cardinal(boss.getOrientation());
-		final int[] l = {-f[1], f[0]}; // Drakan's left (+l)
-		final int t = Perspective.LOCAL_TILE_SIZE;
-		final int h = t / 2;
-		final int perp = config.lungePerpOffset() * t;
-
-		int dangerLeft = plugin.dangerLeft();
-		if (config.lungeSwapSides())
-		{
-			dangerLeft = 1 - dangerLeft;
-		}
-		final Color leftColor = !sided ? NEUTRAL : (dangerLeft == 1 ? config.dangerColor() : config.safeColor());
-		final Color rightColor = !sided ? NEUTRAL : (dangerLeft == 1 ? config.safeColor() : config.dangerColor());
-
-		final int startK = 1 + config.lungeForwardOffset();
-		for (int k = startK; k < startK + config.lungeColumnLength(); k++)
-		{
-			final int bx = c.getX() + f[0] * (h + k * t) + l[0] * perp;
-			final int by = c.getY() + f[1] * (h + k * t) + l[1] * perp;
-			fillTile(g, new LocalPoint(bx + l[0] * h, by + l[1] * h), leftColor);   // Drakan's left tile
-			fillTile(g, new LocalPoint(bx - l[0] * h, by - l[1] * h), rightColor);  // his right tile
 		}
 	}
 

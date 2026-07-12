@@ -78,7 +78,7 @@ This is an external (sideloaded) plugin — it is not on the Plugin Hub.
 | Special-attack safe spots | on | Flank / behind / sidestep tiles with countdowns |
 | Pray Magic flash | on | Fatal-projectile warning banner |
 | Beat delay (ms) | 250 | Shifts the cold→hot flash to your reaction speed |
-| AoE / combo banners, phase HUD, lunge column | off | Legacy/optional extras, off to keep the screen clean |
+| AoE / combo banners, phase HUD, AoE tiles | off | Optional extras, off to keep the screen clean |
 
 ## How it works
 

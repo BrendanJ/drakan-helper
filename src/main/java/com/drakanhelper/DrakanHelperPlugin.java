@@ -856,12 +856,6 @@ public class DrakanHelperPlugin extends Plugin
 		return chargePerp;
 	}
 
-	/** 1 = Drakan's left tile is the danger side, 0 = his right tile. */
-	int dangerLeft()
-	{
-		return dangerLeft;
-	}
-
 	boolean bloomActive()
 	{
 		return bloomTicks > 0;
