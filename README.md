@@ -1,5 +1,5 @@
 # Drakan Helper
-*Warning - This plugin was never fully finished. It was more than enough to complete the fight with 75% of my healing left over, but there are bugs and small glitches. It won't be perfect, but it'll certainly aid you to a completion.*
+> *Warning - This plugin was never fully finished. It was more than enough to complete the fight with 75% of my healing left over, but there are bugs and small glitches. It won't be perfect, but it'll certainly aid you to a completion. The plugin is display-only: it reads game events and draws overlays. It performs no clicks, no prayers, no automation of any kind.*
 
 A RuneLite plugin for the final battle of **The Blood Moon Rises** — the fight against **Lord Lowerniel Drakan (Untethered)** on the roof of Castle Drakan.
 
