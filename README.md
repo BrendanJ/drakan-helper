@@ -94,7 +94,3 @@ All of it was derived from tick-level event logs recorded across a dozen real at
 ## Compliance
 
 Drakan Helper only consumes the RuneLite event bus and renders overlays — comparable to existing boss helpers (Zulrah, Vorkath, etc.). No input automation, no prayer switching, no interaction with the game on the player's behalf.
-
-## Credits
-
-Built by **BrendanJ**, with mechanics reverse-engineering and implementation assistance from Claude (Anthropic). Boss data decoded from recon logs captured during real attempts on the unrepeatable quest fight — and yes, [the fight was won](gfx/gif.gif).
