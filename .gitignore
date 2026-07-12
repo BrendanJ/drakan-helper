@@ -1,0 +1,34 @@
+# Build output
+.gradle/
+build/
+bin/
+out/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# AI-assistant / local tooling files
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.aider*
+.cursor/
+
+# Logs & dev artifacts
+*.log
+dev-logs/
+recon-*.log
+hs_err_pid*
+replay_pid*
+*.hprof
+
+# OS junk
+.DS_Store
+Thumbs.db
