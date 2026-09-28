@@ -48,7 +48,9 @@ Drakan's blood projectiles (Phase 2 onward) can hit for 80+ — fatal without Pr
 
 ## Setup
 
-This is an external (sideloaded) plugin — it is not on the Plugin Hub.
+This is an external (sideloaded) plugin — it is not on the Plugin Hub, so it will **not** appear in your normal RuneLite. Instead you launch a separate copy of RuneLite that has the plugin built in. Nothing is installed into your regular client.
+
+**Requirements:** Git and a JDK — **11, 17 or 21** ([Adoptium Temurin](https://adoptium.net/) is fine). Newer JDKs (22+) are not supported by the Gradle/Lombok versions this project uses (it follows RuneLite's own [example-plugin](https://github.com/runelite/example-plugin) template). Nothing else to install; the Gradle wrapper downloads RuneLite itself.
 
 1. **Clone the repo**
 
@@ -57,15 +59,27 @@ This is an external (sideloaded) plugin — it is not on the Plugin Hub.
    cd drakan-helper
    ```
 
-2. **Run the development client**
+2. **Launch the client with the plugin loaded**
 
    ```
-   ./gradlew test --tests DrakanHelperPluginTest
+   ./gradlew run        # Linux / macOS
+   gradlew.bat run      # Windows
    ```
 
-   or run `DrakanHelperPluginTest` (in `src/test/java`) from your IDE — it launches RuneLite with the plugin loaded. Requires JDK 11.
+   The first run downloads RuneLite and takes a few minutes; after that a RuneLite window opens — that window is the one with the plugin. Leave the terminal open while you play.
 
-3. **Enable it** — find **Drakan Helper** in the plugin list and turn it on. Defaults are tuned for the fight; the only knob most players should touch is **Beat delay (ms)** (raise it if the hot flash feels early, lower if late).
+   **From an IDE instead:** open the cloned folder as a Gradle project (IntelliJ IDEA: *File → Open*, pick the folder, accept the Gradle import), set the project SDK to JDK 11–21, then run the `main` method of `DrakanHelperPluginTest` (in `src/test/java`). It is a launcher, not a unit test — running it as a JUnit test does nothing.
+
+3. **Log in.** Legacy username/password accounts log in as usual. **Jagex accounts** cannot log in to a development client directly — do RuneLite's [Using Jagex Accounts](https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts) steps once: add `--insecure-write-credentials` to the client arguments in *RuneLite (configure)*, start your normal RuneLite through the Jagex Launcher once (this writes `.runelite/credentials.properties`), then start this client and it logs in with those saved credentials. Delete that file when you're done.
+
+4. **Enable it** — the plugin is **off by default**. Open the configuration panel (wrench icon on the sidebar), search **Drakan**, and toggle **Drakan Helper** on. Defaults are tuned for the fight; the only knob most players should touch is **Beat delay (ms)** (raise it if the hot flash feels early, lower if late).
+
+### Troubleshooting
+
+- `No tests found for given includes: [DrakanHelperPluginTest]` — you ran the command from an older version of this README (`gradlew test --tests ...`). Use `./gradlew run` instead.
+- `Unsupported class file major version ...`, or Lombok / annotation-processor errors — your JDK is too new. Install JDK 17, point `JAVA_HOME` at it (or set `org.gradle.java.home` in a `gradle.properties` file), and re-run.
+- **"The plugin isn't in my plugin list"** — you are looking at your normal RuneLite. The plugin only exists in the window `./gradlew run` opens, and it is off until you enable it (search "Drakan" in the config panel).
+- **Can't log in with a Jagex account** — see step 3.
 
 > The plugin is display-only: it reads game events and draws overlays. It performs no clicks, no prayers, no automation of any kind.
 
